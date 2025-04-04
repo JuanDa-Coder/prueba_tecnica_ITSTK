@@ -147,7 +147,5 @@ Se entrena un modelo SVM dentro de un pipeline que incluye:
 
 ---
 
-git add
-
 ---
 
