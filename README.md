@@ -155,10 +155,3 @@ python Procesar_Texto_NLP.py
 
 ---
 
-### 🤖 ¿Y luego?
-
-Puedes usar el modelo en un chatbot por consola. Revisa el archivo `chatbot_svm.py` que implementa un bot que:
-
-- Recibe mensajes del usuario
-- Predice si es una petición, queja o reclamo
-- Responde automáticamente
