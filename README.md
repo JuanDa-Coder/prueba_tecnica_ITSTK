@@ -147,11 +147,7 @@ Se entrena un modelo SVM dentro de un pipeline que incluye:
 
 ---
 
-### ▶️ ¿Cómo ejecutar el script?
-
-```bash
-python Procesar_Texto_NLP.py
-```
+git add
 
 ---
 
