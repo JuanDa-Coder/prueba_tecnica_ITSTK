@@ -1,4 +1,3 @@
-Aquí tienes un `README.md` que documenta paso a paso el flujo de trabajo que realizaste con tu dataset de texto, desde la carga hasta el entrenamiento y guardado del modelo con SVM:
 
 ---
 
@@ -88,4 +87,78 @@ pip install pandas nltk scikit-learn joblib
 
 ---
 
-¿Quieres que agregue también un ejemplo de uso en consola en el `README.md`?
+A continuación **guía de ejecución paso a paso** para correr tu proyecto completo de procesamiento de texto con NLP y SVM. Está pensada para que cualquier persona pueda entender qué hace tu código y cómo utilizarlo.
+
+---
+
+## 🧪 Guía de Ejecución - Clasificación de Texto con NLP + SVM
+
+Este proyecto realiza clasificación de texto usando técnicas de NLP y un modelo supervisado SVM, entrenado con un dataset de quejas, peticiones y reclamos.
+
+---
+
+### ✅ Requisitos
+
+Antes de ejecutar el código, asegúrate de tener instalado:
+
+```bash
+pip install pandas nltk scikit-learn joblib
+```
+
+---
+
+### 🗂 Archivos esperados
+
+- `datatxt.csv`: Dataset original con columnas **Tipo**, **Descripción** y **Respuesta**.
+- `Procesar_Texto_NLP.py`: Archivo con el script que realiza todo el procesamiento y entrenamiento.
+- (Salida esperada) `modelo_svm.pkl`: Archivo del modelo entrenado.
+- (Salida esperada) `datatxt_procesado.csv`: Dataset con la columna `Descripción_Limpiada`.
+
+---
+
+### ⚙️ Pasos de ejecución
+
+#### 1. 📥 Cargar el dataset
+El script abre `datatxt.csv` y corrige automáticamente si las columnas están mal formateadas (por ejemplo, si vienen todas en una sola columna con comillas).
+
+#### 2. 🧼 Limpieza de texto
+La columna **Descripción** es procesada:
+- Minúsculas
+- Eliminación de puntuación
+- Tokenización
+- Eliminación de stopwords (palabras vacías)
+- Resultado: nueva columna `Descripción_Limpiada`
+
+#### 3. 🧠 Preparación del modelo
+- Se definen `X` (entrada) como `Descripción_Limpiada` y `y` (etiquetas) como `Tipo`.
+- Se divide en entrenamiento y prueba (80% / 20%).
+
+#### 4. 🔎 Entrenamiento con Pipeline
+Se entrena un modelo SVM dentro de un pipeline que incluye:
+- `TfidfVectorizer`: para vectorizar texto (con ngramas y escalado logarítmico).
+- `SVC`: clasificador con kernel lineal.
+
+#### 5. 📊 Evaluación
+- Se evalúa el modelo con `accuracy_score` y `classification_report`.
+
+#### 6. 💾 Guardado de resultados
+- Se guarda el modelo entrenado como `modelo_svm.pkl`.
+- Se guarda el dataset limpio como `datatxt_procesado.csv`.
+
+---
+
+### ▶️ ¿Cómo ejecutar el script?
+
+```bash
+python Procesar_Texto_NLP.py
+```
+
+---
+
+### 🤖 ¿Y luego?
+
+Puedes usar el modelo en un chatbot por consola. Revisa el archivo `chatbot_svm.py` que implementa un bot que:
+
+- Recibe mensajes del usuario
+- Predice si es una petición, queja o reclamo
+- Responde automáticamente
